@@ -1,6 +1,6 @@
 # Flashcard
 
-A simple flashcard webapp with the following features:
+A simple flashcard webapp with the following planned features:
 
 - CRUD sets of flashcards to save to local storage
 - Quiz yourself on created sets of cards
