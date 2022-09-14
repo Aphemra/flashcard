@@ -1,0 +1,185 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;500;800&display=swap");
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-size: 20px;
+  font-family: "Open Sans", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  height: auto;
+  background-color: #1e2123;
+  padding-bottom: 1rem;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+  padding: 0;
+  height: 2.5rem;
+  background-color: #3b3f42;
+  color: white;
+  border-bottom: 1px solid grey;
+}
+
+.nav-title {
+  display: flex;
+  align-items: center;
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+  font-weight: bold;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.add-card-modal {
+  display: flex;
+  flex-direction: column;
+  padding: 0.5rem;
+  position: absolute;
+  right: -320px;
+  transition: right 0.5s;
+  min-height: 100%;
+  height: auto;
+  width: 320px;
+  background-color: #3b3f42;
+  border-left: 1px solid grey;
+  z-index: 100;
+  box-shadow: none;
+  color: white;
+}
+
+.slide-right {
+  right: 0;
+  box-shadow: -1px 0px 12px -2px black;
+}
+
+.add-card-title {
+  text-align: center;
+}
+
+.add-card-form {
+  display: flex;
+  flex-direction: column;
+}
+
+.links {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.nav-button {
+  display: flex;
+  list-style: none;
+  height: 100%;
+  align-items: center;
+  text-align: center;
+  font-size: 0.75rem;
+  border-left: 1px solid grey;
+  border-right: 1px solid grey;
+  padding-left: 0.75rem;
+  padding-right: 0.75rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.nav-button.primary:hover {
+  background-color: rgb(68, 68, 174);
+}
+
+.nav-button.danger:hover {
+  background-color: rgb(174, 68, 68);
+}
+
+.nav-button.primary:active {
+  background-color: rgb(51, 51, 129);
+}
+
+.nav-button.danger:active {
+  background-color: rgb(121, 46, 46);
+}
+
+.links .nav-button:not(:first-child) {
+  border-left: 0px;
+}
+
+.card-drawer {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-gap: 1rem;
+  max-width: 800px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.flashcard {
+  background-color: #3b3f42;
+  display: flex;
+  position: relative;
+  aspect-ratio: 3 / 2;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  border: 1px solid grey;
+  box-shadow: 0px 0px 12px -5px black;
+  text-align: center;
+  padding: 1rem;
+}
+
+.exit-button {
+  display: flex;
+  position: absolute;
+  margin: 0.1rem;
+  top: 0.25rem;
+  left: 0.25rem;
+  fill: white;
+  cursor: pointer;
+}
+
+.exit-button:hover {
+  fill: gray;
+}
+
+.exit-button:active {
+  fill-opacity: 80%;
+}
+
+.text {
+  color: white;
+  font-size: minmax(1rem, 2rem);
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.flip {
+  animation: flipcard 0.25s ease-in-out 2 alternate;
+}
+
+@keyframes flipcard {
+  0% {
+    transform: rotate3d(0, 1, 0, 0deg);
+  }
+
+  100% {
+    transform: rotate3d(0, 1, 0, 90deg);
+  }
+}
