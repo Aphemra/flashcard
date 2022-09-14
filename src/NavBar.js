@@ -1,14 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
+import AddCardModal from "./AddCardModal";
 
-function NavBar() {
+function NavBar({ allCards, addCard }) {
+  const [modalVisibility, setModalVisibility] = useState(false);
+
+  function handleModalVisibility(isVisible) {
+    setModalVisibility(isVisible);
+  }
+
+  document.body.style.overflowY = modalVisibility ? "hidden" : "unset";
+
   return (
-    <div className="navbar">
-      <div className="nav-title">FLASHCARD</div>
-      <ul className="links">
-        <li className="nav-button primary">Add Deck</li>
-        <li className="nav-button danger">Delete Decks</li>
-      </ul>
-    </div>
+    <>
+      <div
+        className={
+          modalVisibility ? "add-card-modal slide-right" : "add-card-modal"
+        }
+      >
+        <AddCardModal
+          allCards={allCards}
+          addCard={addCard}
+          setVisibility={handleModalVisibility}
+        />
+      </div>
+      <div className="navbar">
+        <div className="nav-title">FLASHCARD</div>
+        <ul className="links">
+          <li
+            onClick={() => handleModalVisibility(true)}
+            className="nav-button primary"
+          >
+            Add Card
+          </li>
+          <li className="nav-button danger">Delete Decks</li>
+        </ul>
+      </div>
+    </>
   );
 }
 
