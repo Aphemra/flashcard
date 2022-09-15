@@ -1,7 +1,7 @@
 import Card from "./Card";
 import NavBar from "./NavBar";
-//import uuid from "react-uuid";
-import { useState } from "react";
+// import uuid from "react-uuid";
+// import { useState } from "react";
 import useLocalState from "./useLocalState";
 
 function App() {
