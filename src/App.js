@@ -2,6 +2,7 @@ import Card from "./Card";
 import NavBar from "./NavBar";
 //import uuid from "react-uuid";
 import { useState } from "react";
+import useLocalState from "./useLocalState";
 
 function App() {
   // const [cards, setCards] = useState([
@@ -57,7 +58,7 @@ function App() {
   //   },
   // ]);
 
-  const [cards, setCards] = useState([]);
+  const [cards, setCards] = useLocalState("cards", []);
 
   return (
     <>
