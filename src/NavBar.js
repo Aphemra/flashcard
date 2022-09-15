@@ -8,6 +8,12 @@ function NavBar({ allCards, addCard }) {
     setModalVisibility(isVisible);
   }
 
+  const handleDeleteDecks = () => {
+    if (allCards.length && window.confirm("Are you sure you want to delete these decks?")) {
+      addCard([])
+    }
+  }
+
   document.body.style.overflowY = modalVisibility ? "hidden" : "unset";
 
   return (
@@ -32,7 +38,7 @@ function NavBar({ allCards, addCard }) {
           >
             Add Card
           </li>
-          <li className="nav-button danger">Delete Decks</li>
+          <li onClick={handleDeleteDecks} className="nav-button danger">Delete Decks</li>
         </ul>
       </div>
     </>
