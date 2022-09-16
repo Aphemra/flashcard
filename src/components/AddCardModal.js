@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
 
+// TODO: Generalize this into a Modal component that handles the slide in and out logic
+// with an internal component defined by props.
 function AddCardModal({ allCards, addCard, setVisibility }) {
   const [inputs, setInputs] = useState({});
 

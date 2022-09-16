@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ExitButton from "./ExitButton";
+import TrashButton from "./TrashButton";
 
 function Card({ id, answer, question, allCards, removeCard }) {
   const [flip, setFlip] = useState(false);
@@ -26,7 +26,7 @@ function Card({ id, answer, question, allCards, removeCard }) {
       onAnimationIteration={() => revealAnswer()}
     >
       <div className="exit-button" onClick={handleRemove}>
-        <ExitButton height={20} width={20} />
+        <TrashButton height={20} width={20} />
       </div>
       <div className="text">{revealed ? answer : question}</div>
     </div>

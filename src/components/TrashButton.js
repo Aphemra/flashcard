@@ -1,6 +1,6 @@
 import React from "react";
 
-function ExitButton(props) {
+function TrashButton(props) {
   return (
     <svg
       viewBox="0 0 640 1280"
@@ -13,4 +13,4 @@ function ExitButton(props) {
   );
 }
 
-export default ExitButton;
+export default TrashButton;

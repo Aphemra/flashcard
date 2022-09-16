@@ -1,8 +1,8 @@
-import Card from "./Card";
-import NavBar from "./NavBar";
+import Card from "../components/Card";
+import NavBar from "../components/NavBar";
 // import uuid from "react-uuid";
 // import { useState } from "react";
-import useLocalState from "./useLocalState";
+import useLocalState from "../hooks/useLocalState";
 
 function App() {
   // const [cards, setCards] = useState([
