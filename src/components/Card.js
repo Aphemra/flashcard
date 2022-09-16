@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import TrashButton from "./TrashButton";
+import EditButton from "./EditButton";
 
 function Card({ id, answer, question, allCards, removeCard }) {
   const [flip, setFlip] = useState(false);
@@ -25,10 +26,12 @@ function Card({ id, answer, question, allCards, removeCard }) {
       onAnimationEnd={() => flipCard()}
       onAnimationIteration={() => revealAnswer()}
     >
-      <div className="exit-button" onClick={handleRemove}>
-        <TrashButton height={20} width={20} />
-      </div>
+      <div className="side-title">{revealed ? "Answer" : "Question"}</div>
       <div className="text">{revealed ? answer : question}</div>
+      <div className="card-buttons">
+        <TrashButton onClick={handleRemove} />
+        <EditButton />
+      </div>
     </div>
   );
 }

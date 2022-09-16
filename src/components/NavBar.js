@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import AddCardModal from "./AddCardModal";
 
 function NavBar({ allCards, addCard }) {
