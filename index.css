@@ -145,22 +145,37 @@ body {
   padding: 1rem;
 }
 
-.exit-button {
+.side-title {
   display: flex;
   position: absolute;
   margin: 0.1rem;
   top: 0.25rem;
-  left: 0.25rem;
-  fill: white;
+  left: 0.5rem;
+  font-size: 0.5rem;
+  color: rgb(173, 173, 173);
+}
+
+.card-buttons {
+  display: flex;
+  position: absolute;
+  margin: 0.1rem;
+  bottom: 0.1rem;
+  right: 0.25rem;
   cursor: pointer;
 }
 
-.exit-button:hover {
-  fill: gray;
+.icon {
+  padding: 0.25rem;
+  font-size: 0.75rem;
+  --fa-inverse: white;
 }
 
-.exit-button:active {
-  fill-opacity: 80%;
+.icon:hover {
+  --fa-inverse: gray;
+}
+
+.icon:active {
+  --fa-inverse: rgb(69, 69, 144);
 }
 
 .text {
