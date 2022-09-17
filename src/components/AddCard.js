@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
 
-// TODO: Generalize this into a Modal component that handles the slide in and out logic
-// with an internal component defined by props.
-function AddCardModal({ allCards, addCard, setVisibility }) {
+function AddCard({ allCards, addCard, setVisibility }) {
   const [inputs, setInputs] = useState({});
 
   function handleChange(event) {
@@ -32,33 +30,51 @@ function AddCardModal({ allCards, addCard, setVisibility }) {
     };
   }
 
+  const questionLength = () => {
+    return inputs.question ? inputs.question.length : 0;
+  };
+
+  const answerLength = () => {
+    return inputs.answer ? inputs.answer.length : 0;
+  };
+
   return (
     <>
-      <h1 className="add-card-title">Add New Card!</h1>
+      <h1 className="add-card-title">New Card</h1>
       <form className="add-card-form" onSubmit={handleSubmit}>
-        <label>
-          Question:
-          <input
-            type="text"
+        <label className="input-label">
+          <textarea
+            className="input"
+            rows="7"
+            maxLength="150"
             name="question"
+            placeholder="Question"
             value={inputs.question || ""}
             onChange={handleChange}
           />
+          <div className="characters-remaining">
+            {questionLength() + "/150"}
+          </div>
         </label>
-        <label>
-          Answer:
-          <input
-            type="text"
+        <label className="input-label">
+          <textarea
+            className="input"
+            rows="7"
+            maxLength="150"
             name="answer"
+            placeholder="Answer"
             value={inputs.answer || ""}
             onChange={handleChange}
           />
+          <div className="characters-remaining">{answerLength() + "/150"}</div>
         </label>
-        <input type="submit" value="Add" />
-        <button onClick={() => setVisibility(false)}>Exit</button>
+        <input className="form-button" type="submit" value="Add" />
+        <button className="form-button" onClick={() => setVisibility(false)}>
+          Exit
+        </button>
       </form>
     </>
   );
 }
 
-export default AddCardModal;
+export default AddCard;

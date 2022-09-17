@@ -1,19 +1,10 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import App from "./pages/App";
-import Layout from "./pages/Layout";
+import App from "./App";
 
-// TODO: Move this logic into App.js eventually and move App.js logic to a new file in the pages/ directory.
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={"/flashcard/"}>
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<App />} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <App />
   </React.StrictMode>
 );

@@ -1,11 +1,13 @@
-import { Outlet, Link } from "react-router-dom";
+import { Outlet } from "react-router-dom";
+import NavBar from "../components/NavBar";
+import useLocalState from "../hooks/useLocalState";
 
-// TODO: Set this up correctly later using the NavBar component.
 function Layout() {
+  const [cards, setCards] = useLocalState("cards", []);
   return (
     <>
-      <Link />
-      <Outlet />
+      <NavBar allCards={cards} addCard={setCards} />
+      <Outlet context={[cards, setCards]} />
     </>
   );
 }
