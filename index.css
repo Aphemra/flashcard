@@ -30,7 +30,6 @@ body {
 .navbar {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 1rem;
   padding: 0;
   height: 2.5rem;
   background-color: #3b3f42;
@@ -48,7 +47,22 @@ body {
   user-select: none;
 }
 
-.add-card-modal {
+.home-container {
+  display: flex;
+  max-width: 800px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.home-title {
+  color: white;
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.modal {
   display: flex;
   flex-direction: column;
   padding: 0.5rem;
@@ -60,23 +74,72 @@ body {
   width: 320px;
   background-color: #3b3f42;
   border-left: 1px solid grey;
-  z-index: 100;
   box-shadow: none;
   color: white;
+  z-index: 10;
 }
 
 .slide-right {
   right: 0;
-  box-shadow: -1px 0px 12px -2px black;
+  box-shadow: 0px 0px 10px -2px black;
+  clip-path: inset(0px 0px 0px -15px);
 }
 
 .add-card-title {
   text-align: center;
+  padding: 1rem 0;
 }
 
 .add-card-form {
   display: flex;
   flex-direction: column;
+  margin-top: 0.5rem;
+}
+
+.input {
+  color: white;
+  background-color: #2a2d2f;
+  outline: none;
+  border: 1px solid grey;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+  padding: 0.25rem 0.75rem;
+  font-size: 0.75rem;
+  width: 100%;
+  resize: none;
+}
+
+.input-label {
+  position: relative;
+}
+
+.characters-remaining {
+  color: white;
+  position: absolute;
+  font-size: 0.5rem;
+  bottom: 1.65rem;
+  right: 0.75rem;
+}
+
+.form-button {
+  border: 1px solid grey;
+  background-color: #102c64;
+  color: white;
+  font-size: 0.75rem;
+  padding: 0.25rem 1rem;
+  margin-bottom: 0.5rem;
+  border-radius: 0.75rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.form-button:hover {
+  background-color: #0b204a;
+}
+
+.form-button:active {
+  background-color: #091a3b;
 }
 
 .links {
@@ -84,6 +147,12 @@ body {
   align-items: center;
   justify-content: space-between;
   height: 100%;
+}
+
+.page-link {
+  text-decoration: none;
+  color: white;
+  font-size: 0.75rem;
 }
 
 .nav-button {
@@ -103,19 +172,11 @@ body {
 }
 
 .nav-button.primary:hover {
-  background-color: rgb(68, 68, 174);
-}
-
-.nav-button.danger:hover {
-  background-color: rgb(174, 68, 68);
+  background-color: #102c64;
 }
 
 .nav-button.primary:active {
-  background-color: rgb(51, 51, 129);
-}
-
-.nav-button.danger:active {
-  background-color: rgb(121, 46, 46);
+  background-color: #0b204a;
 }
 
 .links .nav-button:not(:first-child) {
@@ -131,6 +192,36 @@ body {
   justify-content: center;
 }
 
+.card-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  padding-top: 1.5rem;
+  height: 2rem;
+}
+
+.card-control-button {
+  list-style: none;
+  padding: 0.25rem 1rem;
+  color: white;
+  background-color: #102c64;
+  border-radius: 5rem;
+  border: 1px solid grey;
+  font-size: 0.75rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.card-control-button:hover {
+  background-color: #0b204a;
+}
+
+.card-control-button:active {
+  background-color: #091a3b;
+}
+
 .flashcard {
   background-color: #3b3f42;
   display: flex;
@@ -143,6 +234,7 @@ body {
   box-shadow: 0px 0px 12px -5px black;
   text-align: center;
   padding: 1rem;
+  z-index: 1;
 }
 
 .side-title {
