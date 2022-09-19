@@ -17,6 +17,11 @@ function NavBar() {
 							Cards
 						</Link>
 					</li>
+					<li className="nav-button primary">
+						<Link className="page-link" to="/decks">
+							Decks
+						</Link>
+					</li>
 				</ul>
 			</div>
 		</>

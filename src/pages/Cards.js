@@ -2,11 +2,11 @@ import { useOutletContext, Link } from "react-router-dom";
 import { useState } from "react";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
-import AddCard from "../components/AddCard";
-import EditCard from "../components/EditCard";
+import AddCard from "../components/modals/AddCard";
+import EditCard from "../components/modals/EditCard";
 
 function Cards() {
-	const [cards, setCards] = useOutletContext();
+	const { cards, setCards } = useOutletContext();
 	const [modalAddCardVisibility, setAddCardModalVisibility] = useState(false);
 	const [modalEditCardVisibility, setEditCardModalVisibility] = useState(false);
 	const [editModalInputs, setEditModalInputs] = useState({});
@@ -51,7 +51,13 @@ function Cards() {
 		<>
 			<div className={modalAddCardVisibility ? "modal slide-right" : "modal"}>{addCardModal}</div>
 			<div className={modalEditCardVisibility ? "modal slide-right" : "modal"}>{editCardModal}</div>
-			<div className={modalAddCardVisibility || modalEditCardVisibility ? "modal-lock" : "hide"}></div>
+			<div
+				onClick={() => {
+					handleEditCardModalVisibility(false);
+					handleAddCardModalVisibility(false);
+				}}
+				className={modalAddCardVisibility || modalEditCardVisibility ? "modal-lock" : "hide"}
+			></div>
 			<div className="card-controls">
 				<ul>
 					<li className="card-control-button" onClick={() => handleAddCardModalVisibility(true)}>
