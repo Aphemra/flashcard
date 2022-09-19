@@ -85,12 +85,14 @@ body {
   clip-path: inset(0px 0px 0px -15px);
 }
 
-.add-card-title {
+.add-card-title,
+.edit-card-title {
   text-align: center;
   padding: 1rem 0;
 }
 
-.add-card-form {
+.add-card-form,
+.edit-card-form {
   display: flex;
   flex-direction: column;
   margin-top: 0.5rem;
@@ -103,7 +105,7 @@ body {
   border: 1px solid grey;
   border-radius: 1rem;
   margin-bottom: 1rem;
-  padding: 0.25rem 0.75rem;
+  padding: 0.5rem 0.75rem;
   font-size: 0.75rem;
   width: 100%;
   resize: none;
@@ -192,6 +194,14 @@ body {
   justify-content: center;
 }
 
+.card-drawer-notification {
+  color: grey;
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+  padding-top: 1rem;
+}
+
 .card-controls {
   display: flex;
   justify-content: center;
@@ -275,6 +285,10 @@ body {
   font-size: minmax(1rem, 2rem);
   -webkit-user-select: none;
   user-select: none;
+}
+
+.hide {
+  display: none;
 }
 
 .flip {
