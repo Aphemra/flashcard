@@ -1,22 +1,20 @@
 import { useEffect, useMemo, useState } from "react";
 
 function useLocalState(key, initialValue = null) {
-  const [value, setValue] = useState(
-    JSON.parse(localStorage.getItem(key)) || initialValue
-  );
+	const [value, setValue] = useState(JSON.parse(localStorage.getItem(key)) || initialValue);
 
-  useEffect(() => {
-    const localValue = JSON.parse(localStorage.getItem(key));
-    if (localValue) {
-      setValue(localValue);
-    }
-  }, [key, setValue]);
+	useEffect(() => {
+		const localValue = JSON.parse(localStorage.getItem(key));
+		if (localValue) {
+			setValue(localValue);
+		}
+	}, [key, setValue]);
 
-  useMemo(() => {
-    localStorage.setItem(key, JSON.stringify(value));
-  }, [key, value]);
+	useMemo(() => {
+		localStorage.setItem(key, JSON.stringify(value));
+	}, [key, value]);
 
-  return [value, setValue];
+	return [value, setValue];
 }
 
 export default useLocalState;

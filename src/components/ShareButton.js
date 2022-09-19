@@ -3,7 +3,7 @@ import { faShareFromSquare } from "@fortawesome/free-solid-svg-icons";
 import React from "react";
 
 function ShareButton() {
-  return <FontAwesomeIcon className="icon" icon={faShareFromSquare} inverse />;
+	return <FontAwesomeIcon className="icon" icon={faShareFromSquare} inverse />;
 }
 
 export default ShareButton;
