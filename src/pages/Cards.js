@@ -3,16 +3,25 @@ import { useState } from "react";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import AddCard from "../components/AddCard";
+import EditCard from "../components/EditCard";
 
 function Cards() {
   const [cards, setCards] = useOutletContext();
-  const [modalVisibility, setModalVisibility] = useState(false);
+  const [modalAddCardVisibility, setAddCardModalVisibility] = useState(false);
+  const [modalEditCardVisibility, setEditCardModalVisibility] = useState(false);
+  const [editModalInputs, setEditModalInputs] = useState({});
+  const [cardToEditID, setCardToEditID] = useState();
 
-  function handleModalVisibility(isVisible) {
-    setModalVisibility(isVisible);
+  function handleAddCardModalVisibility(isVisible) {
+    setAddCardModalVisibility(isVisible);
   }
 
-  document.body.style.overflowY = modalVisibility ? "hidden" : "unset";
+  function handleEditCardModalVisibility(isVisible) {
+    setEditCardModalVisibility(isVisible);
+  }
+
+  document.body.style.overflowY =
+    modalAddCardVisibility || modalEditCardVisibility ? "hidden" : "unset";
 
   const addCardModal = (
     <Modal
@@ -20,7 +29,22 @@ function Cards() {
         <AddCard
           allCards={cards}
           addCard={setCards}
-          setVisibility={handleModalVisibility}
+          setVisibility={handleAddCardModalVisibility}
+        />
+      }
+    />
+  );
+
+  const editCardModal = (
+    <Modal
+      modalComponent={
+        <EditCard
+          allCards={cards}
+          setCards={setCards}
+          setVisibility={handleEditCardModalVisibility}
+          inputs={editModalInputs}
+          setInputs={setEditModalInputs}
+          cardToEditID={cardToEditID}
         />
       }
     />
@@ -28,18 +52,24 @@ function Cards() {
 
   return (
     <>
-      <div className={modalVisibility ? "modal slide-right" : "modal"}>
+      <div className={modalAddCardVisibility ? "modal slide-right" : "modal"}>
         {addCardModal}
+      </div>
+      <div className={modalEditCardVisibility ? "modal slide-right" : "modal"}>
+        {editCardModal}
       </div>
       <div className="card-controls">
         <ul>
           <li
             className="card-control-button"
-            onClick={() => handleModalVisibility(true)}
+            onClick={() => handleAddCardModalVisibility(true)}
           >
             Add Card
           </li>
         </ul>
+      </div>
+      <div className={cards.length ? "hide" : "card-drawer-notification"}>
+        <h1>You've got no cards here! Why not add some?</h1>
       </div>
       <div className="card-drawer">
         {cards.map((card) => {
@@ -50,7 +80,12 @@ function Cards() {
               answer={card.answer}
               question={card.question}
               allCards={cards}
-              removeCard={setCards}
+              setCards={setCards}
+              showEditModal={handleEditCardModalVisibility}
+              editModal={editCardModal}
+              inputs={editModalInputs}
+              setInputs={setEditModalInputs}
+              setCardToEditID={setCardToEditID}
             />
           );
         })}
