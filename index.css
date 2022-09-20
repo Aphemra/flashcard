@@ -7,6 +7,7 @@
 	margin: 0;
 	padding: 0;
 	font-size: 20px;
+	overflow-x: hidden;
 	font-family: "Open Sans", sans-serif;
 }
 
@@ -21,7 +22,7 @@
 	--dark-input-background-color: rgb(49, 52, 55);
 
 	--dark-primary-font-color: rgb(255, 255, 255);
-	--dark-secondary-font-color: rgba(255, 255, 255, 0.25);
+	--dark-secondary-font-color: rgba(255, 255, 255, 0.4);
 
 	--dark-modal-lock-color: rgb(0, 0, 0, 0.5);
 
@@ -36,7 +37,7 @@
 	/* Light Mode Colors */
 }
 
-body::-webkit-scrollbar {
+::-webkit-scrollbar {
 	display: none;
 }
 
@@ -54,6 +55,8 @@ body {
 }
 
 .navbar {
+	position: relative;
+	width: 100%;
 	display: flex;
 	justify-content: space-between;
 	padding: 0;
@@ -90,7 +93,6 @@ body {
 }
 
 .modal {
-	display: flex;
 	flex-direction: column;
 	padding: 0.5rem;
 	position: absolute;
@@ -318,13 +320,28 @@ body {
 	z-index: 5;
 }
 
-.card-controls {
+.main-deck-title {
+	color: var(--dark-primary-font-color);
+}
+
+.deck-controls {
 	display: flex;
 	justify-content: center;
 	align-items: center;
-	padding-bottom: 1.5rem;
-	padding-top: 1.5rem;
+	margin: 0 auto;
+	padding: 1.5rem 1rem;
 	height: 2rem;
+	max-width: 40rem;
+}
+
+.card-controls {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 0 auto;
+	padding: 1.5rem 1rem;
+	height: 2rem;
+	max-width: 40rem;
 }
 
 .card-controls > ul {
@@ -387,6 +404,8 @@ body {
 	text-align: center;
 	padding: 1rem;
 	z-index: 1;
+	-webkit-user-select: none;
+	user-select: none;
 }
 
 .side-title {
@@ -399,7 +418,48 @@ body {
 	color: var(--dark-secondary-font-color);
 }
 
-.card-buttons {
+.deck {
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	aspect-ratio: 3 / 2;
+	align-items: flex-start;
+	justify-content: flex-start;
+	border-radius: var(--border-radius);
+	border: 1px solid var(--dark-border-color);
+	box-shadow: 0px 0px 12px -5px var(--dark-box-shadow-color);
+	background-color: var(--dark-off-background-color);
+	padding: 0.25rem 0.5rem;
+	z-index: 1;
+	-webkit-user-select: none;
+	user-select: none;
+}
+
+.deck-title {
+	font-size: 0.9rem;
+	color: var(--dark-primary-font-color);
+	word-break: break-word;
+}
+
+.deck-description {
+	margin: 0.1rem;
+	font-size: 0.6rem;
+	color: var(--dark-secondary-font-color);
+	word-break: break-word;
+}
+
+.deck-card-total {
+	display: flex;
+	position: absolute;
+	font-size: 0.75rem;
+	margin: 0.25rem;
+	bottom: 0.2rem;
+	left: 0.3rem;
+	color: var(--dark-primary-font-color);
+}
+
+.card-buttons,
+.deck-buttons {
 	display: flex;
 	position: absolute;
 	margin: 0.1rem;
@@ -458,5 +518,23 @@ body {
 
 	100% {
 		transform: rotate3d(0, 1, 0, 90deg);
+	}
+}
+
+@media (max-width: 400px) {
+	.main-deck-title {
+		font-size: 0.7rem;
+	}
+
+	.card-control-button,
+	.home-control-button {
+		padding: 0.2rem 0.2rem;
+		margin: 0 0.2rem;
+		font-size: 0.7rem;
+	}
+
+	.page-link,
+	.page-link-disabled {
+		font-size: 0.7rem;
 	}
 }
