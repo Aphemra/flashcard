@@ -13,11 +13,6 @@ function NavBar() {
 						</Link>
 					</li>
 					<li className="nav-button primary">
-						<Link className="page-link" to="/cards">
-							Cards
-						</Link>
-					</li>
-					<li className="nav-button primary">
 						<Link className="page-link" to="/decks">
 							Decks
 						</Link>

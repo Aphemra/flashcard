@@ -1,5 +1,5 @@
 import { useOutletContext } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Deck from "../components/Deck";
 import Modal from "../components/Modal";
 import AddDeck from "../components/modals/AddDeck";
@@ -7,11 +7,16 @@ import EditDeck from "../components/modals/EditDeck";
 
 // TODO: Alter this (mostly copy of Cards) to fit the Decks page's needs
 function Decks() {
-	const { decks, setDecks } = useOutletContext();
+	const { cards, setCards, decks, setDecks, currentDeckID, setCurrentDeckID } = useOutletContext();
 	const [modalAddDeckVisibility, setAddDeckModalVisibility] = useState(false);
 	const [modalEditDeckVisibility, setEditDeckModalVisibility] = useState(false);
 	const [editModalInputs, setEditModalInputs] = useState({});
 	const [deckToEditID, setDeckToEditID] = useState();
+
+	useEffect(() => {
+		setCurrentDeckID("");
+		setCards([]);
+	}, []);
 
 	function handleAddDeckModalVisibility(isVisible) {
 		setAddDeckModalVisibility(isVisible);
@@ -22,6 +27,7 @@ function Decks() {
 	}
 
 	document.body.style.overflowY = modalAddDeckVisibility || modalEditDeckVisibility ? "hidden" : "unset";
+	document.body.style.height = modalAddDeckVisibility || modalEditDeckVisibility ? "100vh" : "";
 
 	const addDeckModal = (
 		<Modal modalComponent={<AddDeck allDecks={decks} addDeck={setDecks} setVisibility={handleAddDeckModalVisibility} />} />
@@ -44,8 +50,12 @@ function Decks() {
 
 	return (
 		<>
-			<div className={modalAddDeckVisibility ? "modal slide-right" : "modal"}>{addDeckModal}</div>
-			<div className={modalEditDeckVisibility ? "modal slide-right" : "modal"}>{editDeckModal}</div>
+			<div id="add-deck" className={modalAddDeckVisibility ? "modal slide-right" : "modal"}>
+				{addDeckModal}
+			</div>
+			<div id="edit-deck" className={modalEditDeckVisibility ? "modal slide-right" : "modal"}>
+				{editDeckModal}
+			</div>
 			<div
 				onClick={() => {
 					handleEditDeckModalVisibility(false);
@@ -53,7 +63,7 @@ function Decks() {
 				}}
 				className={modalAddDeckVisibility || modalEditDeckVisibility ? "modal-lock" : "hide"}
 			></div>
-			<div className="card-controls">
+			<div className="deck-controls">
 				<ul>
 					<li className="card-control-button" onClick={() => handleAddDeckModalVisibility(true)}>
 						Add Deck
@@ -69,13 +79,18 @@ function Decks() {
 						<Deck
 							key={deck.id}
 							id={deck.id}
-							title={deck.answer}
-							description={deck.question}
+							title={deck.title}
+							description={deck.description}
+							cards={deck.cards}
 							allDecks={decks}
 							setDecks={setDecks}
 							showEditModal={handleEditDeckModalVisibility}
 							setInputs={setEditModalInputs}
 							setDeckToEditID={setDeckToEditID}
+							currentDeckID={currentDeckID}
+							setCurrentDeckID={setCurrentDeckID}
+							cardsState={cards}
+							setCardsState={setCards}
 						/>
 					);
 				})}

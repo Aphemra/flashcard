@@ -1,16 +1,24 @@
 import { useOutletContext, Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import AddCard from "../components/modals/AddCard";
 import EditCard from "../components/modals/EditCard";
 
 function Cards() {
-	const { cards, setCards } = useOutletContext();
+	const { cards, setCards, decks, setDecks, currentDeckID, setCurrentDeckID } = useOutletContext();
 	const [modalAddCardVisibility, setAddCardModalVisibility] = useState(false);
 	const [modalEditCardVisibility, setEditCardModalVisibility] = useState(false);
 	const [editModalInputs, setEditModalInputs] = useState({});
 	const [cardToEditID, setCardToEditID] = useState();
+
+	const currentDeck = currentDeckID ? decks.filter((deck) => deck.id === currentDeckID)[0] : { cards: [] };
+
+	function setCardsToCurrentDeck(newCardList) {
+		currentDeck.cards = newCardList;
+		setCards(currentDeck.cards);
+		setDecks([...decks]);
+	}
 
 	function handleAddCardModalVisibility(isVisible) {
 		setAddCardModalVisibility(isVisible);
@@ -27,17 +35,26 @@ function Cards() {
 	}
 
 	document.body.style.overflowY = modalAddCardVisibility || modalEditCardVisibility ? "hidden" : "unset";
+	document.body.style.height = modalAddCardVisibility || modalEditCardVisibility ? "100vh" : "";
 
 	const addCardModal = (
-		<Modal modalComponent={<AddCard allCards={cards} addCard={setCards} setVisibility={handleAddCardModalVisibility} />} />
+		<Modal
+			modalComponent={
+				<AddCard
+					allCards={currentDeck.cards}
+					addCard={setCardsToCurrentDeck}
+					setVisibility={handleAddCardModalVisibility}
+				/>
+			}
+		/>
 	);
 
 	const editCardModal = (
 		<Modal
 			modalComponent={
 				<EditCard
-					allCards={cards}
-					setCards={setCards}
+					allCards={currentDeck.cards}
+					setCards={setCardsToCurrentDeck}
 					setVisibility={handleEditCardModalVisibility}
 					inputs={editModalInputs}
 					setInputs={setEditModalInputs}
@@ -59,8 +76,12 @@ function Cards() {
 				className={modalAddCardVisibility || modalEditCardVisibility ? "modal-lock" : "hide"}
 			></div>
 			<div className="card-controls">
+				<div className="main-deck-title">{currentDeck.title}</div>
 				<ul>
-					<li className="card-control-button" onClick={() => handleAddCardModalVisibility(true)}>
+					<li
+						className={currentDeckID ? "card-control-button" : "card-control-button-disabled page-link-disabled"}
+						onClick={() => (currentDeckID ? handleAddCardModalVisibility(true) : "")}
+					>
 						Add Card
 					</li>
 					<li className={cards.length ? "card-control-button" : "card-control-button-disabled"}>
@@ -71,7 +92,11 @@ function Cards() {
 				</ul>
 			</div>
 			<div className={cards.length ? "hide" : "card-drawer-notification"}>
-				<h1>You've got no cards here! Why not add some?</h1>
+				<h1>
+					{currentDeckID
+						? "You've got no cards here! Why not add some?"
+						: "You shouldn't be here until you've created a deck! :("}
+				</h1>
 			</div>
 			<div className="card-drawer">
 				{cards.map((card) => {
@@ -81,8 +106,8 @@ function Cards() {
 							id={card.id}
 							answer={card.answer}
 							question={card.question}
-							allCards={cards}
-							setCards={setCards}
+							allCards={currentDeck.cards}
+							setCards={setCardsToCurrentDeck}
 							showEditModal={handleEditCardModalVisibility}
 							setInputs={setEditModalInputs}
 							setCardToEditID={setCardToEditID}

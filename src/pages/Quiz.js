@@ -3,7 +3,7 @@ import { useOutletContext, Link } from "react-router-dom";
 import QuizCard from "../components/QuizCard";
 
 function Quiz() {
-	const [cards] = useOutletContext();
+	const { cards } = useOutletContext();
 	const [currentCardIndex, setCurrentCardIndex] = useState(0);
 	const [shuffledDeck] = useState(shuffleDeck());
 

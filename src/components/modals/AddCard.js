@@ -18,8 +18,6 @@ function AddCard({ allCards, addCard, setVisibility }) {
 		const newCardList = [...allCards, newCard];
 		addCard(newCardList);
 		setInputs({});
-
-		console.log(inputs);
 	}
 
 	function getNewCard(question, answer) {
