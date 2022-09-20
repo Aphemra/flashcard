@@ -12,7 +12,6 @@ function AddCard({ allCards, addCard, setVisibility }) {
 
 	function handleSubmit(event) {
 		event.preventDefault();
-
 		if (!inputs.question || !inputs.answer) return;
 		const newCard = getNewCard(inputs.question, inputs.answer);
 		const newCardList = [...allCards, newCard];

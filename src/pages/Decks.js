@@ -5,7 +5,6 @@ import Modal from "../components/Modal";
 import AddDeck from "../components/modals/AddDeck";
 import EditDeck from "../components/modals/EditDeck";
 
-// TODO: Alter this (mostly copy of Cards) to fit the Decks page's needs
 function Decks() {
 	const { cards, setCards, decks, setDecks, currentDeckID, setCurrentDeckID } = useOutletContext();
 	const [modalAddDeckVisibility, setAddDeckModalVisibility] = useState(false);

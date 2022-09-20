@@ -1,9 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import TrashButton from "./TrashButton";
 import EditButton from "./EditButton";
 
-// TODO: Copy Card for the most part
 function Deck({
 	id,
 	title,
@@ -14,9 +13,7 @@ function Deck({
 	showEditModal,
 	setInputs,
 	setDeckToEditID,
-	currentDeckID,
 	setCurrentDeckID,
-	cardsState,
 	setCardsState,
 }) {
 	const navigate = useNavigate();

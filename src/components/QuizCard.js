@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 
-function QuizCard({ id, answer, question, currentIndex, totalCards, questionTextClass, answerTextClass }) {
+function QuizCard({ answer, question, currentIndex, totalCards, questionTextClass, answerTextClass }) {
 	const [flip, setFlip] = useState(false);
 	const [revealed, setRevealed] = useState(false);
 	const [questionTextSize, setQuestionTextSize] = useState(questionTextClass);

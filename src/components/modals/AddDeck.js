@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import uuid from "react-uuid";
 
-// TODO: Copy AddCard for the most part
 function AddDeck({ allDecks, addDeck, setVisibility }) {
 	const [inputs, setInputs] = useState({});
 
@@ -13,14 +12,11 @@ function AddDeck({ allDecks, addDeck, setVisibility }) {
 
 	function handleSubmit(event) {
 		event.preventDefault();
-
 		if (!inputs.title || !inputs.description) return;
 		const newDeck = getNewDeck(inputs.title, inputs.description);
 		const newDeckList = [...allDecks, newDeck];
 		addDeck(newDeckList);
 		setInputs({});
-
-		console.log(inputs);
 	}
 
 	function getNewDeck(title, description) {

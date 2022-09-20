@@ -1,12 +1,12 @@
 import { useOutletContext, Link } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Card from "../components/Card";
 import Modal from "../components/Modal";
 import AddCard from "../components/modals/AddCard";
 import EditCard from "../components/modals/EditCard";
 
 function Cards() {
-	const { cards, setCards, decks, setDecks, currentDeckID, setCurrentDeckID } = useOutletContext();
+	const { cards, setCards, decks, setDecks, currentDeckID } = useOutletContext();
 	const [modalAddCardVisibility, setAddCardModalVisibility] = useState(false);
 	const [modalEditCardVisibility, setEditCardModalVisibility] = useState(false);
 	const [editModalInputs, setEditModalInputs] = useState({});
